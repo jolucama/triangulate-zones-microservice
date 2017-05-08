@@ -12,11 +12,20 @@ public class CoordinateValidator implements Validator {
 
     /**
      * This Validator validates *just* Coordinate instances
+     * @param clazz
+     * @return 
      */
+    @Override
     public boolean supports(Class clazz) {
         return Coordinate.class.equals(clazz);
     }
 
+    /**
+     *
+     * @param obj
+     * @param e
+     */
+    @Override
     public void validate(Object obj, Errors e) {
         ValidationUtils.rejectIfEmpty(e, "latitude", "latitude.empty");
         ValidationUtils.rejectIfEmpty(e, "longitude", "longitude.empty");

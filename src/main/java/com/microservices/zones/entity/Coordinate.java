@@ -1,5 +1,6 @@
 package com.microservices.zones.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
@@ -9,19 +10,30 @@ import org.hibernate.validator.constraints.Range;
  *
  * @author jlcardosa
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Coordinate {
 
     @NotBlank
-    private final long id;
+    private long id;
 
     @NotBlank
     @Range(min = -90, max = 90)
-    private final double latitude;
+    private double latitude;
 
     @NotBlank
     @Range(min = -180, max = 180)
-    private final double longitude;
+    private double longitude;
 
+    public Coordinate() {
+        
+    }
+    
+    public Coordinate(double latitude, double longitude) {
+        this.id = 0;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+    
     public Coordinate(long id, double latitude, double longitude) {
         this.id = id;
         this.latitude = latitude;
@@ -38,5 +50,17 @@ public class Coordinate {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

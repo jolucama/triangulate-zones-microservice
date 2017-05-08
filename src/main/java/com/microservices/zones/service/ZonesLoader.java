@@ -17,25 +17,24 @@ import java.util.List;
 /**
  * Created by jlcardosa on 07/05/2017.
  */
-//@Component
+@Service
 public class ZonesLoader {
 
     private static final String jsonFileName = "zones.json";
     private Zones zones;
 
-    //@Autowired
     public ZonesLoader() {
-
+        
     }
-
-    //@PostConstruct
+    
+    @PostConstruct
     public void init() throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         File jsonFile = new ClassPathResource(ZonesLoader.jsonFileName).getFile();
-
+        
         // deserialize contents of each file into an object of type
-        List<TriangularZone> zones = jsonMapper.readValue(jsonFile, new TypeReference<List<TriangularZone>>() {});
-        this.zones = new Zones(zones);
+        List<TriangularZone> zoneList = jsonMapper.readValue(jsonFile, new TypeReference<List<TriangularZone>>(){});
+        this.zones = new Zones(zoneList);
     }
 
     public Zones getZones() {

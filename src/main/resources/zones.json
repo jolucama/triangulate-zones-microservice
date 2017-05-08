@@ -1,61 +1,97 @@
-{
-  "zones": [
+[
     {
-      "id": 1,
-      "firstCoordinate": {
         "id": 1,
-        "latitude": 0.45604859844372,
-        "longitude": 0.33600384627704
-      },
-      "secondCoordinate": {
-        "id": 2,
-        "latitude": 0.95911170184374,
-        "longitude": 5.894364992072532
-      },
-      "thirdCoordinate": {
-        "id": 3,
-        "latitude": 5.96192685382591,
-        "longitude": 2.59248433146695
-      },
-      "name": "Zone Test 1"
+        "firstCoordinate": {
+            "id": 2,
+            "latitude": 76.38102226619866,
+            "longitude": 126.91243742294301
+        },
+        "secondCoordinate": {
+            "id": 3,
+            "latitude": 77.17386537263828,
+            "longitude": 165.85595390565305
+        },
+        "thirdCoordinate": {
+            "id": 4,
+            "latitude": 76.6271707855012,
+            "longitude": 38.50980121973348
+        },
+        "name": "Zone Test 4"
     },
     {
-      "id": 2,
-      "firstCoordinate": {
-        "id": 3,
-        "latitude": 5.96192685382591,
-        "longitude": 2.59248433146695
-      },
-      "secondCoordinate": {
-        "id": 4,
-        "latitude": 5.96192685382591,
-        "longitude": 7.59248433146695
-      },
-      "thirdCoordinate": {
         "id": 5,
-        "latitude": 10.22729870677962,
-        "longitude": 7.0675975631126
-      },
-      "name": "Zone Test 2"
+        "firstCoordinate": {
+            "id": 6,
+            "latitude": 32.72775407661885,
+            "longitude": 18.885818337943807
+        },
+        "secondCoordinate": {
+            "id": 7,
+            "latitude": 49.76523510589864,
+            "longitude": 8.525030703288966
+        },
+        "thirdCoordinate": {
+            "id": 8,
+            "latitude": 49.05997561928781,
+            "longitude": 39.20252972240392
+        },
+        "name": "Zone Test 8"
     },
     {
-      "id": 3,
-      "firstCoordinate": {
-        "id": 30,
-        "latitude": 50.01649691627793,
-        "longitude": 50.06183749459336
-      },
-      "secondCoordinate": {
-        "id": 31,
-        "latitude": 50.80541893694254,
-        "longitude": 60.3781646989673
-      },
-      "thirdCoordinate": {
-        "id": 32,
-        "latitude": 70.31467703609094,
-        "longitude": 65.05523411790656
-      },
-      "name": "Zone Test 3"
+        "id": 9,
+        "firstCoordinate": {
+            "id": 10,
+            "latitude": 18.83312179966608,
+            "longitude": 57.313357211269235
+        },
+        "secondCoordinate": {
+            "id": 11,
+            "latitude": 48.67793961706141,
+            "longitude": 117.71122867425534
+        },
+        "thirdCoordinate": {
+            "id": 12,
+            "latitude": 39.634852385217364,
+            "longitude": 79.48667454511573
+        },
+        "name": "Zone Test 12"
+    },
+    {
+        "id": 13,
+        "firstCoordinate": {
+            "id": 14,
+            "latitude": 13.259438187592053,
+            "longitude": 78.7241412888461
+        },
+        "secondCoordinate": {
+            "id": 15,
+            "latitude": 44.77429236308934,
+            "longitude": 42.51607816129841
+        },
+        "thirdCoordinate": {
+            "id": 16,
+            "latitude": 15.913646519601707,
+            "longitude": 169.84682880197724
+        },
+        "name": "Zone Test 16"
+    },
+    {
+        "id": 17,
+        "firstCoordinate": {
+            "id": 18,
+            "latitude": 21.437507460892867,
+            "longitude": 125.36227041031623
+        },
+        "secondCoordinate": {
+            "id": 19,
+            "latitude": 80.5740518401806,
+            "longitude": 145.04808237402966
+        },
+        "thirdCoordinate": {
+            "id": 20,
+            "latitude": 36.44084556192985,
+            "longitude": 23.548027216978102
+        },
+        "name": "Zone Test 20"
     }
-  ]
-}
+]

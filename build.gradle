@@ -1,20 +1,23 @@
 buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
-	}
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+//apply plugin: 'checkstyle'
 apply plugin: 'org.springframework.boot'
 
 jar {
-	baseName = 'zones-rest-service'
-	version =  '0.1.0'
+    baseName = 'zones-rest-service'
+    version =  '0.1.0'
 }
 
 repositories {
@@ -25,17 +28,21 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 configurations {
-	dev
+    dev
 }
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web")
-	compile 'org.slf4j:slf4j-api:1.7.13'
-	dev("org.springframework.boot:spring-boot-devtools")
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile 'org.slf4j:slf4j-api:1.7.13'
+    dev("org.springframework.boot:spring-boot-devtools")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    
+    //Swagger
+    compile "io.springfox:springfox-swagger2:2.5.0"
+    compile "io.springfox:springfox-swagger-ui:2.5.0"
 }
 
 bootRun {
-	// Use Spring Boot DevTool only when we run Gradle bootRun task
-	classpath = sourceSets.main.runtimeClasspath + configurations.dev
+    // Use Spring Boot DevTool only when we run Gradle bootRun task
+    classpath = sourceSets.main.runtimeClasspath + configurations.dev
 }

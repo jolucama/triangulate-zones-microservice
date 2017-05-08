@@ -25,7 +25,6 @@ public class ZonesGenerator {
     }
 
     private TriangularZone generateTriangularZone() {
-
         return new TriangularZone(
                 counter.incrementAndGet(),
                 this.generateRamdomCoordinate(),
