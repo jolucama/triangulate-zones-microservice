@@ -1,0 +1,61 @@
+{
+  "zones": [
+    {
+      "id": 1,
+      "firstCoordinate": {
+        "id": 1,
+        "latitude": 0.45604859844372,
+        "longitude": 0.33600384627704
+      },
+      "secondCoordinate": {
+        "id": 2,
+        "latitude": 0.95911170184374,
+        "longitude": 5.894364992072532
+      },
+      "thirdCoordinate": {
+        "id": 3,
+        "latitude": 5.96192685382591,
+        "longitude": 2.59248433146695
+      },
+      "name": "Zone Test 1"
+    },
+    {
+      "id": 2,
+      "firstCoordinate": {
+        "id": 3,
+        "latitude": 5.96192685382591,
+        "longitude": 2.59248433146695
+      },
+      "secondCoordinate": {
+        "id": 4,
+        "latitude": 5.96192685382591,
+        "longitude": 7.59248433146695
+      },
+      "thirdCoordinate": {
+        "id": 5,
+        "latitude": 10.22729870677962,
+        "longitude": 7.0675975631126
+      },
+      "name": "Zone Test 2"
+    },
+    {
+      "id": 3,
+      "firstCoordinate": {
+        "id": 30,
+        "latitude": 50.01649691627793,
+        "longitude": 50.06183749459336
+      },
+      "secondCoordinate": {
+        "id": 31,
+        "latitude": 50.80541893694254,
+        "longitude": 60.3781646989673
+      },
+      "thirdCoordinate": {
+        "id": 32,
+        "latitude": 70.31467703609094,
+        "longitude": 65.05523411790656
+      },
+      "name": "Zone Test 3"
+    }
+  ]
+}
