@@ -1,0 +1,9 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/zones
+    username: root
+    password: root
+    driver-class-name: com.postgresql.jdbc.Driver

@@ -1,11 +1,11 @@
 package com.microservices.zones.controller;
 
-import com.microservices.zones.entity.Coordinate;
-import com.microservices.zones.entity.TriangularZone;
-import com.microservices.zones.entity.Zones;
+import com.microservices.zones.model.Coordinate;
+import com.microservices.zones.model.TriangularZone;
+import com.microservices.zones.model.Zones;
 import com.microservices.zones.exception.CoordinateOutOfZoneException;
-import com.microservices.zones.service.ZonesGenerator;
-import com.microservices.zones.service.ZonesLoader;
+import com.microservices.zones.service.impl.ZonesGeneratorServiceImpl;
+import com.microservices.zones.service.impl.ZonesLoaderServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,10 +26,10 @@ import org.springframework.http.ResponseEntity;
 public class ZonesController {
 
     @Autowired
-    private ZonesLoader zonesLoader;
+    private ZonesLoaderServiceImpl zonesLoader;
 
     @Autowired
-    private ZonesGenerator zonesGenerator;
+    private ZonesGeneratorServiceImpl zonesGenerator;
 
     @RequestMapping(
             value = "/zones",

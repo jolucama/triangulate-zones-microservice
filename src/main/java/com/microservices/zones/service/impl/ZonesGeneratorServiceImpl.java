@@ -1,8 +1,9 @@
-package com.microservices.zones.service;
+package com.microservices.zones.service.impl;
 
-import com.microservices.zones.entity.Coordinate;
-import com.microservices.zones.entity.TriangularZone;
-import com.microservices.zones.entity.Zones;
+import com.microservices.zones.model.Coordinate;
+import com.microservices.zones.model.TriangularZone;
+import com.microservices.zones.model.Zones;
+import com.microservices.zones.service.ZonesGeneratorService;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -11,7 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by jlcardosa on 08/05/2017.
  */
 @Service
-public class ZonesGenerator {
+public class ZonesGeneratorServiceImpl implements ZonesGeneratorService {
 
     private Zones zones;
     private AtomicLong counter = new AtomicLong();

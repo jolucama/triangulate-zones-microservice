@@ -1,4 +1,4 @@
-package com.microservices.zones.entity;
+package com.microservices.zones.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.NotBlank;

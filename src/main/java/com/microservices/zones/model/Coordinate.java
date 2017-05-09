@@ -1,4 +1,4 @@
-package com.microservices.zones.entity;
+package com.microservices.zones.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;

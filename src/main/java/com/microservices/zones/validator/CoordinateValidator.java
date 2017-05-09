@@ -1,6 +1,6 @@
 package com.microservices.zones.validator;
 
-import com.microservices.zones.entity.Coordinate;
+import com.microservices.zones.model.Coordinate;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
