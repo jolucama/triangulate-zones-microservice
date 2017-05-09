@@ -1,6 +1,7 @@
 package com.microservices.zones.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.Range;
  *
  * @author jlcardosa
  */
+@ApiModel(value="Coordinate", description="Model to represent a coordinate")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Coordinate {
 

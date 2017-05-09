@@ -24,10 +24,8 @@ public class TriangularZone {
 
     private String name;
 
-    public TriangularZone() {
-        
-    }
-    
+    public TriangularZone() {}
+
     public TriangularZone(long id, Coordinate firstCoordinate, Coordinate secondCoordinate, Coordinate thirdCoordinate, String name) {
         this.id = id;
         this.firstCoordinate = firstCoordinate;
@@ -37,19 +35,18 @@ public class TriangularZone {
     }
 
     public boolean coordinateIsInsideZone(@Validated Coordinate coordinate) {
-        return this.zoneArea() == TriangularZone.calculateArea(firstCoordinate, secondCoordinate, coordinate) +
+        return Math.abs(this.zoneArea() - TriangularZone.calculateArea(firstCoordinate, secondCoordinate, coordinate) +
                 TriangularZone.calculateArea(firstCoordinate, coordinate, thirdCoordinate) +
-                TriangularZone.calculateArea(coordinate, secondCoordinate, thirdCoordinate);
+                TriangularZone.calculateArea(coordinate, secondCoordinate, thirdCoordinate)) < .01;
     }
-    
-    public static double calculateArea(Coordinate A, Coordinate B, Coordinate C) {
-        return Math.abs(
-                A.getLatitude()*(B.getLongitude()-C.getLongitude()) +
-                        B.getLatitude()*(C.getLongitude()-A.getLongitude())+
-                        C.getLatitude()*(A.getLongitude()-B.getLongitude()))
+
+    public static double calculateArea(Coordinate a, Coordinate b, Coordinate c) {
+        return Math.abs(a.getLatitude()*(b.getLongitude()-c.getLongitude()) +
+                        b.getLatitude()*(c.getLongitude()-a.getLongitude())+
+                        c.getLatitude()*(a.getLongitude()-b.getLongitude()))
                 /2.0;
     }
-    
+
     public long getId() {
         return id;
     }
@@ -89,7 +86,7 @@ public class TriangularZone {
     public void setName(String name) {
         this.name = name;
     }
-   
+
     private double zoneArea() {
         return TriangularZone.calculateArea(firstCoordinate, secondCoordinate, thirdCoordinate);
     }
