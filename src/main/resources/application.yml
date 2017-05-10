@@ -3,7 +3,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost/zones
-    username: root
+    url: jdbc:postgresql://localhost:5432/zones
+    username: postgres
     password: root
-    driver-class-name: com.postgresql.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

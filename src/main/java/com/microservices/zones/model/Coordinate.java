@@ -5,6 +5,11 @@ import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * Class to represent a coordinate in this universe
@@ -13,9 +18,12 @@ import org.hibernate.validator.constraints.Range;
  */
 @ApiModel(value="Coordinate", description="Model to represent a coordinate")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Entity
 public class Coordinate {
 
     @NotBlank
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
     @NotBlank

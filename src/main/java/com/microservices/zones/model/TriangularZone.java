@@ -4,22 +4,33 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
 
+import javax.persistence.*;
+
 /**
  * Created by jlcardosa on 07/05/2017.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Entity
 public class TriangularZone {
 
     @NotBlank
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
     @NotBlank
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coordinate_1_id")
     private Coordinate firstCoordinate;
 
     @NotBlank
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coordinate_2_id")
     private Coordinate secondCoordinate;
 
     @NotBlank
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coordinate_3_id")
     private Coordinate thirdCoordinate;
 
     private String name;
