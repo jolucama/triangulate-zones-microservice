@@ -11,7 +11,17 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'pmd'
-//apply plugin: 'findbugs'
+apply plugin: 'findbugs'
+pmd {
+   ignoreFailures = true
+   pmdTest.enabled=false
+ }
+findbugs {
+    ignoreFailures=true
+    findbugsTest.enabled=false
+}
+findbugsMain.reports.html.enabled = true
+findbugsMain.reports.xml.enabled = false
 //apply plugin: 'checkstyle'
 //checkstyle.configFile = file('config/checkstyle/checkstyle.xml')
 

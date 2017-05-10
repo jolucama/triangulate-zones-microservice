@@ -1,6 +1,7 @@
 package com.microservices.zones.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.microservices.zones.utils.AreaCalculator;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
 
@@ -45,17 +46,10 @@ public class TriangularZone {
         this.name = name;
     }
 
-    public boolean coordinateIsInsideZone(@Validated Coordinate coordinate) {
-        return Math.abs(this.zoneArea() - TriangularZone.calculateArea(firstCoordinate, secondCoordinate, coordinate) +
-                TriangularZone.calculateArea(firstCoordinate, coordinate, thirdCoordinate) +
-                TriangularZone.calculateArea(coordinate, secondCoordinate, thirdCoordinate)) < .01;
-    }
-
-    public static double calculateArea(Coordinate a, Coordinate b, Coordinate c) {
-        return Math.abs(a.getLatitude()*(b.getLongitude()-c.getLongitude()) +
-                        b.getLatitude()*(c.getLongitude()-a.getLongitude())+
-                        c.getLatitude()*(a.getLongitude()-b.getLongitude()))
-                /2.0;
+    public boolean isCoordinateInsideZone(@Validated Coordinate coordinate) {
+        return Math.abs(this.zoneArea() - AreaCalculator.calculateTriangularArea(firstCoordinate, secondCoordinate, coordinate) +
+                AreaCalculator.calculateTriangularArea(firstCoordinate, coordinate, thirdCoordinate) +
+                AreaCalculator.calculateTriangularArea(coordinate, secondCoordinate, thirdCoordinate)) < .01;
     }
 
     public long getId() {
@@ -99,6 +93,6 @@ public class TriangularZone {
     }
 
     private double zoneArea() {
-        return TriangularZone.calculateArea(firstCoordinate, secondCoordinate, thirdCoordinate);
+        return AreaCalculator.calculateTriangularArea(firstCoordinate, secondCoordinate, thirdCoordinate);
     }
 }

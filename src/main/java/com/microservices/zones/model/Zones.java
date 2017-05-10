@@ -33,7 +33,7 @@ public class Zones {
      */
     public TriangularZone getZoneByCoordinate(Coordinate coordinate) throws CoordinateOutOfZoneException {
         for (TriangularZone zone : zones) {
-            if (zone.coordinateIsInsideZone(coordinate)) {
+            if (zone.isCoordinateInsideZone(coordinate)) {
                 return zone;
             }
         }
