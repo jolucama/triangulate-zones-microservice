@@ -1,5 +1,7 @@
 # Triangulate Zones Microservice
 
+[![Build Status](https://travis-ci.org/jolucama/triangulate-zones-microservice.svg?branch=master)](https://travis-ci.org/jolucama/triangulate-zones-microservice)
+
 ## Overview
 API Service for calculation of triangular zones   
 
@@ -12,8 +14,6 @@ API Service for calculation of triangular zones
  - FindBugs
  - Checkstyle
  - Swagger2
- - 
-
 
 ##Pre-requisites
 
