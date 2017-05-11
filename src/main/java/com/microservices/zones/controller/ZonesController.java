@@ -4,8 +4,8 @@ import com.microservices.zones.model.Coordinate;
 import com.microservices.zones.model.TriangularZone;
 import com.microservices.zones.model.Zones;
 import com.microservices.zones.exception.CoordinateOutOfZoneException;
-import com.microservices.zones.service.impl.ZonesGeneratorServiceImpl;
-import com.microservices.zones.service.impl.ZonesLoaderServiceImpl;
+import com.microservices.zones.service.TriangularZoneService;
+import com.microservices.zones.service.impl.TriangularZoneGeneratorServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,16 +26,16 @@ import org.springframework.http.ResponseEntity;
 public class ZonesController {
 
     @Autowired
-    private ZonesLoaderServiceImpl zonesLoader;
+    private TriangularZoneService triangularZoneService;
 
     @Autowired
-    private ZonesGeneratorServiceImpl zonesGenerator;
+    private TriangularZoneGeneratorServiceImpl zonesGenerator;
 
     @RequestMapping(
             value = "/zones",
             method = RequestMethod.GET)
-    public Zones zones() {
-        return this.zonesLoader.getZones();
+    public List<TriangularZone> zones() {
+        return this.triangularZoneService.loadFromJson();
     }
 
     @ApiOperation(value = "Generate a number of zones randomly",
@@ -50,7 +50,7 @@ public class ZonesController {
             method = RequestMethod.GET)
     public List<TriangularZone> zonesRandomGenerated(
             @ApiParam(value = "Number of zones generated ramdonly", required = true) @PathVariable int amount) {
-        return this.zonesGenerator.generate(amount).getZones();
+        return this.zonesGenerator.generate(amount);
     }
 
     @ApiOperation(value = "Determinate a zone by a given coordinate",
@@ -66,13 +66,15 @@ public class ZonesController {
             method = RequestMethod.GET)
     public ResponseEntity<TriangularZone> zoneByCoordinate(@RequestParam("lat") double latitude, @RequestParam("long") double longitude) {
         Coordinate coordinate = new Coordinate(latitude, longitude);
-        Zones zones = this.zonesLoader.getZones();
-        try {
-            TriangularZone triangularZone = zones.getZoneByCoordinate(coordinate);
-            //Return message
-            return new ResponseEntity<>(triangularZone, HttpStatus.OK);
-        } catch (CoordinateOutOfZoneException e) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+        List zones = this.triangularZoneService.loadFromJson();
+        
+        return (ResponseEntity<TriangularZone>) zones.get(0);
+//        try {
+//            TriangularZone triangularZone = zones.getZoneByCoordinate(coordinate);
+//            //Return message
+//            return new ResponseEntity<>(triangularZone, HttpStatus.OK);
+//        } catch (CoordinateOutOfZoneException e) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
     }
 }

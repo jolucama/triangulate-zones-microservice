@@ -1,4 +1,4 @@
-package com.microservices.zones.validator;
+package com.microservices.zones.model.validator;
 
 import com.microservices.zones.model.Coordinate;
 import org.springframework.validation.Errors;
@@ -11,7 +11,7 @@ import org.springframework.validation.Validator;
 public class CoordinateValidator implements Validator {
 
     /**
-     * This Validator validates *just* Coordinate instances
+     * This validator validates *just* Coordinate instances
      * @param clazz
      * @return 
      */

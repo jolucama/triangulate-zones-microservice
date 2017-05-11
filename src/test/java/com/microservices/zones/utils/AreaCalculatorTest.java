@@ -34,13 +34,23 @@ public class AreaCalculatorTest extends AreaCalculator {
     public void setUp() {
         coordinate1 = new Coordinate(1, 20, 20);
         coordinate2 = new Coordinate(1, 30, 30);
-        coordinate3 = new Coordinate(1, 40, 40);
+        coordinate3 = new Coordinate(1, 20, 30);
     }
     
     @Test
     public void calculateTriangularAreaTest() {
         assertEquals(
                 50, 
+                AreaCalculator.calculateTriangularArea(coordinate1, coordinate2, coordinate3), 
+                0.1
+        );
+    }
+    
+    @Test
+    public void calculateTriangularAreaEmptyTest() {
+        coordinate3 = new Coordinate(1, 40, 40);
+        assertEquals(
+                0, 
                 AreaCalculator.calculateTriangularArea(coordinate1, coordinate2, coordinate3), 
                 0.1
         );

@@ -3,24 +3,27 @@ package com.microservices.zones.service.impl;
 import com.microservices.zones.model.Coordinate;
 import com.microservices.zones.model.TriangularZone;
 import com.microservices.zones.model.Zones;
-import com.microservices.zones.service.ZonesGeneratorService;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicLong;
+import com.microservices.zones.service.TriangularZoneGeneratorService;
 
 /**
  * Created by jlcardosa on 08/05/2017.
  */
 @Service
-public class ZonesGeneratorServiceImpl implements ZonesGeneratorService {
+public class TriangularZoneGeneratorServiceImpl implements TriangularZoneGeneratorService {
 
-    private Zones zones;
+    private List zones;
     private AtomicLong counter = new AtomicLong();
 
-    public Zones generate(int count) {
-        zones = new Zones();
+    @Override
+    public List<TriangularZone> generate(int count) {
+        zones = new ArrayList();
         for (int i = 0; i < count; i++) {
-            zones.addZone(this.generateTriangularZone());
+            zones.add(this.generateTriangularZone());
         }
         return zones;
     }
