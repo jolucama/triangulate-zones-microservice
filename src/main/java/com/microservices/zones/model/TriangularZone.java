@@ -46,12 +46,6 @@ public class TriangularZone {
         this.name = name;
     }
 
-    public boolean isCoordinateInsideZone(@Validated Coordinate coordinate) {
-        return Math.abs(this.zoneArea() - AreaCalculator.calculateTriangularArea(firstCoordinate, secondCoordinate, coordinate) +
-                AreaCalculator.calculateTriangularArea(firstCoordinate, coordinate, thirdCoordinate) +
-                AreaCalculator.calculateTriangularArea(coordinate, secondCoordinate, thirdCoordinate)) < .01;
-    }
-
     public long getId() {
         return id;
     }
@@ -92,7 +86,4 @@ public class TriangularZone {
         this.name = name;
     }
 
-    private double zoneArea() {
-        return AreaCalculator.calculateTriangularArea(firstCoordinate, secondCoordinate, thirdCoordinate);
-    }
 }

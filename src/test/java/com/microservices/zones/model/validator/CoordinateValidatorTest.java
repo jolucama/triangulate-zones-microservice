@@ -11,10 +11,14 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -24,6 +28,9 @@ import org.springframework.validation.Validator;
  *
  * @author josem
  */
+@ActiveProfiles("unitTest")
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CoordinateValidatorTest {
     
     private Validator coordinateValidator;

@@ -2,7 +2,7 @@ package com.microservices.zones.service.impl;
 
 import com.microservices.zones.model.Coordinate;
 import com.microservices.zones.model.TriangularZone;
-import com.microservices.zones.model.Zones;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,11 @@ import com.microservices.zones.service.TriangularZoneGeneratorService;
 @Service
 public class TriangularZoneGeneratorServiceImpl implements TriangularZoneGeneratorService {
 
-    private List zones;
     private AtomicLong counter = new AtomicLong();
 
     @Override
     public List<TriangularZone> generate(int count) {
-        zones = new ArrayList();
+        List zones = new ArrayList();
         for (int i = 0; i < count; i++) {
             zones.add(this.generateTriangularZone());
         }

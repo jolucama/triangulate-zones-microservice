@@ -2,8 +2,6 @@ package com.microservices.zones.controller;
 
 import com.microservices.zones.model.Coordinate;
 import com.microservices.zones.model.TriangularZone;
-import com.microservices.zones.model.Zones;
-import com.microservices.zones.exception.CoordinateOutOfZoneException;
 import com.microservices.zones.service.TriangularZoneService;
 import com.microservices.zones.service.impl.TriangularZoneGeneratorServiceImpl;
 import io.swagger.annotations.Api;
@@ -15,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -23,6 +21,7 @@ import org.springframework.http.ResponseEntity;
  */
 @Api(description = "Operations about zones")
 @RestController
+@RequestMapping("/v1")
 public class ZonesController {
 
     @Autowired
@@ -35,12 +34,12 @@ public class ZonesController {
             value = "/zones",
             method = RequestMethod.GET)
     public List<TriangularZone> zones() {
-        return this.triangularZoneService.loadFromJson();
+        return this.triangularZoneService.getAllZones();
     }
 
     @ApiOperation(value = "Generate a number of zones randomly",
                   notes = "Generate a number of zones randomly",
-                  response = Zones.class,
+                  response = List.class,
                   responseContainer = "List")
     @ApiResponses(value = {
                   @ApiResponse(code = 200, message = "Set of zones")
@@ -49,7 +48,7 @@ public class ZonesController {
             value = "/zones/random/{amount}",
             method = RequestMethod.GET)
     public List<TriangularZone> zonesRandomGenerated(
-            @ApiParam(value = "Number of zones generated ramdonly", required = true) @PathVariable int amount) {
+            @ApiParam(value = "Number of zones generated randomly", required = true) @PathVariable int amount) {
         return this.zonesGenerator.generate(amount);
     }
 
@@ -62,19 +61,11 @@ public class ZonesController {
                     @ApiResponse(code = 204, message = "No zone found")
                  })
     @RequestMapping(
-            value = "/zone/find/coordinate",
+            value = "/zones/search",
             method = RequestMethod.GET)
-    public ResponseEntity<TriangularZone> zoneByCoordinate(@RequestParam("lat") double latitude, @RequestParam("long") double longitude) {
+    public TriangularZone zoneByCoordinate(@RequestParam("lat") double latitude, @RequestParam("long") double longitude) {
         Coordinate coordinate = new Coordinate(latitude, longitude);
-        List zones = this.triangularZoneService.loadFromJson();
-        
-        return (ResponseEntity<TriangularZone>) zones.get(0);
-//        try {
-//            TriangularZone triangularZone = zones.getZoneByCoordinate(coordinate);
-//            //Return message
-//            return new ResponseEntity<>(triangularZone, HttpStatus.OK);
-//        } catch (CoordinateOutOfZoneException e) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
+
+        return this.triangularZoneService.getZoneByCoordinate(coordinate);
     }
 }

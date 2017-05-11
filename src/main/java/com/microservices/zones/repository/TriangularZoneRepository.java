@@ -1,11 +1,15 @@
 package com.microservices.zones.repository;
 
 import com.microservices.zones.model.TriangularZone;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by jlcardosa on 09/05/2017.
+ * Class that handles database operations for TriangularZone
  */
-public interface TriangularZoneRepository extends CrudRepository<TriangularZone, Long>{
+@Repository
+public interface TriangularZoneRepository extends JpaRepository<TriangularZone, Long>, TriangularZoneRepositoryCustom {
 
 }

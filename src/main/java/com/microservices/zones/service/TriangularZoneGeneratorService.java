@@ -1,6 +1,5 @@
 package com.microservices.zones.service;
 
-import com.microservices.zones.model.Zones;
 import java.util.List;
 
 /**

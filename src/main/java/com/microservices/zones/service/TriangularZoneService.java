@@ -1,6 +1,9 @@
 package com.microservices.zones.service;
 
-import com.microservices.zones.model.Zones;
+import com.microservices.zones.exception.CoordinateOutOfZoneException;
+import com.microservices.zones.model.Coordinate;
+import com.microservices.zones.model.TriangularZone;
+
 import java.util.List;
 
 /**
@@ -8,7 +11,7 @@ import java.util.List;
  */
 public interface TriangularZoneService {
 
-    public List loadFromJson();
-    
-    public Zones getZones();
+    TriangularZone getZoneByCoordinate(Coordinate coordinate) throws CoordinateOutOfZoneException;
+
+    List getAllZones();
 }
