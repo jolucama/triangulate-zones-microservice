@@ -14,15 +14,18 @@ API Service for calculation of triangular zones
  - FindBugs
  - Checkstyle
  - Swagger2
-
-##Pre-requisites
-
+ - JaCoCo
+ - JPA & JDBC
+ - SLF4j Logging
+ 
 
 ### Running the application
+
 * Run `./gradlew build`.
 
 ### Swagger documentation
 
 http://localhost:8090/swagger-ui.html
+
 http://localhost:8090/v2/api-docs
 
