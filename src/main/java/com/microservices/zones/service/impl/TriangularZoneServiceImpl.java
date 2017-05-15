@@ -44,7 +44,7 @@ public class TriangularZoneServiceImpl implements TriangularZoneService {
     public TriangularZone getZoneByCoordinate(Coordinate coordinate) throws CoordinateOutOfZoneException {
         List<TriangularZone> triangularZones = triangularZoneRepository.findAll();
         for (TriangularZone zone : triangularZones) {
-            if (this.isCoordinateInsideTriangularZone(coordinate, zone)) {
+            if (this.isCoordinateInsideTriangularZone(coordinate, zone) == true) {
                 return zone;
             }
         }
@@ -58,8 +58,8 @@ public class TriangularZoneServiceImpl implements TriangularZoneService {
 
     private boolean isCoordinateInsideTriangularZone(@Validated Coordinate coordinate, TriangularZone triangularZone) {
         return Math.abs(this.getTriangularZoneArea(triangularZone) -
-                AreaCalculator.calculateTriangularArea(triangularZone.getFirstCoordinate(), triangularZone.getSecondCoordinate(), coordinate) +
-                AreaCalculator.calculateTriangularArea(triangularZone.getFirstCoordinate(), coordinate, triangularZone.getThirdCoordinate()) +
+                AreaCalculator.calculateTriangularArea(triangularZone.getFirstCoordinate(), triangularZone.getSecondCoordinate(), coordinate) -
+                AreaCalculator.calculateTriangularArea(triangularZone.getFirstCoordinate(), coordinate, triangularZone.getThirdCoordinate()) -
                 AreaCalculator.calculateTriangularArea(coordinate, triangularZone.getSecondCoordinate(), triangularZone.getThirdCoordinate())) < .01;
     }
 

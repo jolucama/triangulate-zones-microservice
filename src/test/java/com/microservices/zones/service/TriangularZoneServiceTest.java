@@ -5,6 +5,7 @@
  */
 package com.microservices.zones.service;
 
+import com.microservices.zones.exception.CoordinateOutOfZoneException;
 import com.microservices.zones.model.Coordinate;
 import com.microservices.zones.model.TriangularZone;
 import com.microservices.zones.repository.TriangularZoneJsonRepository;
@@ -41,9 +42,18 @@ public class TriangularZoneServiceTest {
     @InjectMocks
     TriangularZoneService triangularZoneService = new TriangularZoneServiceImpl();
     
+    TriangularZone zone1;
+    TriangularZone zone2;
+            
     @Before
     public void setUp() {
+        Coordinate coordinate1 = new Coordinate(0, 0);
+        Coordinate coordinate2 = new Coordinate(0, 20);
+        Coordinate coordinate3 = new Coordinate(10, 10);
+        Coordinate coordinate4 = new Coordinate(20, 20);
         
+        zone1 = new TriangularZone(1, coordinate1, coordinate2, coordinate3, "Test1");
+        zone2 = new TriangularZone(2, coordinate2, coordinate3, coordinate4, "Test2");
     }
     
     @After
@@ -63,19 +73,25 @@ public class TriangularZoneServiceTest {
     @Test
     public void getZonesByCoordinatesTest(){
         List<TriangularZone> triangularZones = new ArrayList();
-        
-        Coordinate coordinate1 = new Coordinate(0, 0);
-        Coordinate coordinate2 = new Coordinate(0, 20);
-        Coordinate coordinate3 = new Coordinate(10, 10);
-        Coordinate coordinate4 = new Coordinate(20, 20);
-        Coordinate coordinateToSearch = new Coordinate(5, 5);
-        
-        TriangularZone triangularZone1 = new TriangularZone(1, coordinate1, coordinate2, coordinate3, "Test1");
-        TriangularZone triangularZone2 = new TriangularZone(2, coordinate2, coordinate3, coordinate4, "Test2");
-        triangularZones.add(triangularZone1);
-        triangularZones.add(triangularZone2);
+        Coordinate coordinateToSearch = new Coordinate(5, 10);
+        triangularZones.add(zone1);
+        triangularZones.add(zone2);
         
         Mockito.doReturn(triangularZones).when(triangularZoneRepository).findAll();
-        assertEquals(triangularZone1, triangularZoneService.getZoneByCoordinate(coordinateToSearch));
+        
+        assertEquals(2, triangularZoneRepository.findAll().size());
+        assertEquals(zone1, triangularZoneService.getZoneByCoordinate(coordinateToSearch));
+    }
+    
+    @Test(expected = CoordinateOutOfZoneException.class)
+    public void getZonesByCoordinatesOutOfZoneTest(){
+        List<TriangularZone> triangularZones = new ArrayList();
+        Coordinate coordinateToSearch = new Coordinate(50, 50);
+        
+        triangularZones.add(zone1);
+        Mockito.doReturn(triangularZones).when(triangularZoneRepository).findAll();
+        
+        assertEquals(1, triangularZoneRepository.findAll().size());
+        triangularZoneService.getZoneByCoordinate(coordinateToSearch);
     }
 }

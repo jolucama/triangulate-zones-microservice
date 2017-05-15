@@ -12,6 +12,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
+apply plugin: 'jacoco'
 pmd {
    ignoreFailures = true
    pmdTest.enabled=false
@@ -22,6 +23,14 @@ findbugs {
 }
 findbugsMain.reports.html.enabled = true
 findbugsMain.reports.xml.enabled = false
+jacocoTestReport {
+    reports {
+        xml.enabled = false
+        csv.enabled = false
+        html.enabled = true
+        html.destination = "${buildDir}/jacocoHtml"
+    }
+}
 //apply plugin: 'checkstyle'
 //checkstyle.configFile = file('config/checkstyle/checkstyle.xml')
 
