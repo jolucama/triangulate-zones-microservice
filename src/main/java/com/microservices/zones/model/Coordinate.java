@@ -4,11 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 
 /**
  *
@@ -18,13 +14,12 @@ import javax.persistence.Id;
  */
 @ApiModel(value="Coordinate", description="Model to represent a coordinate")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Entity
 public class Coordinate {
 
     @NotBlank
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    //@GeneratedValue(strategy= GenerationType.AUTO)
+    private String id;
 
     @NotBlank
     @Range(min = -90, max = 90)
@@ -39,18 +34,11 @@ public class Coordinate {
     }
     
     public Coordinate(double latitude, double longitude) {
-        this.id = 0;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-    
-    public Coordinate(long id, double latitude, double longitude) {
-        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -62,7 +50,7 @@ public class Coordinate {
         return longitude;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

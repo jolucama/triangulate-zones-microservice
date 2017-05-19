@@ -6,14 +6,10 @@
 package com.microservices.zones.utils;
 
 import com.microservices.zones.model.Coordinate;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -31,9 +27,9 @@ public class AreaCalculatorTest {
 
     @Before
     public void setUp() {
-        coordinate1 = new Coordinate(1, 20, 20);
-        coordinate2 = new Coordinate(1, 30, 30);
-        coordinate3 = new Coordinate(1, 20, 30);
+        coordinate1 = new Coordinate(20, 20);
+        coordinate2 = new Coordinate(30, 30);
+        coordinate3 = new Coordinate(20, 30);
     }
 
     @Test
@@ -47,7 +43,7 @@ public class AreaCalculatorTest {
 
     @Test
     public void calculateTriangularAreaEmptyTest() {
-        coordinate3 = new Coordinate(1, 40, 40);
+        coordinate3 = new Coordinate(40, 40);
         assertEquals(
                 0,
                 AreaCalculator.calculateTriangularArea(coordinate1, coordinate2, coordinate3),

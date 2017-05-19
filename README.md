@@ -15,13 +15,14 @@ API Service for calculation of triangular zones
  - Checkstyle
  - Swagger2
  - JaCoCo
- - JPA & JDBC
+ - Mongo DB
  - SLF4j Logging
  
 
 ### Running the application
 
 * Run `./gradlew build`.
+* Run `./gradlew bootRun`.
 
 ### Swagger documentation
 

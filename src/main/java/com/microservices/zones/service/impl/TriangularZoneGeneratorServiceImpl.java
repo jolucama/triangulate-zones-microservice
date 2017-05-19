@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.atomic.AtomicLong;
 import com.microservices.zones.service.TriangularZoneGeneratorService;
 
 /**
@@ -15,9 +14,7 @@ import com.microservices.zones.service.TriangularZoneGeneratorService;
  */
 @Service
 public class TriangularZoneGeneratorServiceImpl implements TriangularZoneGeneratorService {
-
-    private AtomicLong counter = new AtomicLong();
-
+    
     @Override
     public List<TriangularZone> generate(int count) {
         List zones = new ArrayList();
@@ -29,18 +26,16 @@ public class TriangularZoneGeneratorServiceImpl implements TriangularZoneGenerat
 
     private TriangularZone generateTriangularZone() {
         return new TriangularZone(
-                counter.incrementAndGet(),
                 this.generateRamdomCoordinate(),
                 this.generateRamdomCoordinate(),
                 this.generateRamdomCoordinate(),
-                "Zone Test " + counter.get());
+                "Zone Test ");
     }
 
     private Coordinate generateRamdomCoordinate() {
         double latitude = Math.random()*90;
         double longitude = Math.random()*180;
 
-        return new Coordinate(counter.incrementAndGet(), latitude, longitude);
+        return new Coordinate(latitude, longitude);
     }
-
 }

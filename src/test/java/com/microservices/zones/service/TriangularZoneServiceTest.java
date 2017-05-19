@@ -52,8 +52,8 @@ public class TriangularZoneServiceTest {
         Coordinate coordinate3 = new Coordinate(10, 10);
         Coordinate coordinate4 = new Coordinate(20, 20);
         
-        zone1 = new TriangularZone(1, coordinate1, coordinate2, coordinate3, "Test1");
-        zone2 = new TriangularZone(2, coordinate2, coordinate3, coordinate4, "Test2");
+        zone1 = new TriangularZone(coordinate1, coordinate2, coordinate3, "Test1");
+        zone2 = new TriangularZone(coordinate2, coordinate3, coordinate4, "Test2");
     }
     
     @After

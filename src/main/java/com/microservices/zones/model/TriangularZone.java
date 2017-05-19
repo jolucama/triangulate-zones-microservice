@@ -1,52 +1,43 @@
 package com.microservices.zones.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.microservices.zones.utils.AreaCalculator;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by jlcardosa on 07/05/2017.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Entity
+@Document(collection = "triangularZone")
 public class TriangularZone {
 
     @NotBlank
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    private String id;
 
     @NotBlank
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "coordinate_1_id")
     private Coordinate firstCoordinate;
 
     @NotBlank
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "coordinate_2_id")
     private Coordinate secondCoordinate;
 
     @NotBlank
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "coordinate_3_id")
     private Coordinate thirdCoordinate;
 
     private String name;
 
     public TriangularZone() {}
 
-    public TriangularZone(long id, Coordinate firstCoordinate, Coordinate secondCoordinate, Coordinate thirdCoordinate, String name) {
-        this.id = id;
+    public TriangularZone(Coordinate firstCoordinate, Coordinate secondCoordinate, Coordinate thirdCoordinate, String name) {
         this.firstCoordinate = firstCoordinate;
         this.secondCoordinate = secondCoordinate;
         this.thirdCoordinate = thirdCoordinate;
         this.name = name;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -66,7 +57,7 @@ public class TriangularZone {
         return name;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

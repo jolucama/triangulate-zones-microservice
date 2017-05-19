@@ -1,19 +1,12 @@
 server:
-  port: 8080
+  port: 8090
 
-spring:
-  datasource:
-    url: jdbc:postgresql://ec2-107-20-141-145.compute-1.amazonaws.com:5432/d8bthq2gpnqb9d?sslmode=require
-    username: gazpcelrykkcsd
-    password: 6abf5f887f3a3f414b6755d231452b16e35cb706f02aa6b76813e74ae12bddaf
-    #url: jdbc:postgresql://localhost:5432/zones
-    #username: postgres
-    #password: root
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
+spring: 
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: zones
 
 logging:
   level:
