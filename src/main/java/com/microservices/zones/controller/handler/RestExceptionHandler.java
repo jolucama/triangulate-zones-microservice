@@ -2,6 +2,7 @@
 package com.microservices.zones.controller.handler;
 
 //Imports
+import com.microservices.zones.exception.AsynchronousException;
 import com.microservices.zones.exception.CoordinateOutOfZoneException;
 import com.microservices.zones.model.ApiMessageResponse;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,23 @@ public class RestExceptionHandler {
     public ResponseEntity<ApiMessageResponse> exceptionHandler(CoordinateOutOfZoneException e, WebRequest request) {
 
         //Return message
-        return new ResponseEntity<ApiMessageResponse>(
+        return new ResponseEntity(
                 new ApiMessageResponse(HttpStatus.NO_CONTENT, e.getMessage()), HttpStatus.NO_CONTENT
+        );
+    }
+    
+    /**
+     * Out of zone exception handler
+     * @param e
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(value = {AsynchronousException.class})
+    public ResponseEntity<ApiMessageResponse> exceptionAsyncHandler(AsynchronousException e, WebRequest request) {
+
+        //Return message
+        return new ResponseEntity(
+                new ApiMessageResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR
         );
     }
 }
