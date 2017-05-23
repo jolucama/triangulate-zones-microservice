@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicLong;
 import com.microservices.zones.service.TriangularZoneGeneratorService;
+import org.springframework.cache.annotation.Cacheable;
 
 /**
  * Created by jlcardosa on 08/05/2017.
@@ -19,6 +20,8 @@ public class TriangularZoneGeneratorServiceImpl implements TriangularZoneGenerat
     private AtomicLong counter = new AtomicLong();
 
     @Override
+    @Cacheable("zones")
+    //@CacheResult for JSR-107 (JCache)
     public List<TriangularZone> generate(int count) {
         List zones = new ArrayList();
         for (int i = 0; i < count; i++) {

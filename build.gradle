@@ -65,6 +65,12 @@ dependencies {
 
     //PostgreSQL
     compile 'org.postgresql:postgresql'
+    
+    //Caching
+    compile 'org.springframework.boot:spring-boot-starter-cache'
+    
+    // https://mvnrepository.com/artifact/javax.cache/cache-api
+    compile group: 'javax.cache', name: 'cache-api', version: '1.0.0'
 
     //Swagger
     compile "io.springfox:springfox-data-rest:2.6.1"

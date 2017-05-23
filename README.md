@@ -17,6 +17,7 @@ API Service for calculation of triangular zones
  - JaCoCo
  - JPA & JDBC
  - SLF4j Logging
+ - Caching
  
 
 ### Running the application
