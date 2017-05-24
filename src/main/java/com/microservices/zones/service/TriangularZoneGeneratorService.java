@@ -8,5 +8,6 @@ import java.util.List;
 public interface TriangularZoneGeneratorService {
 
     public List generate(int count);
-
+    
+    public void resetGeneration();
 }
