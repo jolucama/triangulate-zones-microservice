@@ -47,15 +47,6 @@ public class TriangularZoneGeneratorServiceImplTest {
     }
     
     @Test
-    public void generateCacheTest() {
-        List<TriangularZone> triangularZones1 = triangularZoneGeneratorService.generate(5);
-        List<TriangularZone> triangularZones2 = triangularZoneGeneratorService.generate(5);
-        
-        assertEquals(triangularZones1.get(0).getId(), triangularZones2.get(0).getId());
-        
-    }
-    
-    @Test
     public void resetGenerationCacheTest() {
         List triangularZones1 = triangularZoneGeneratorService.generate(5);
         triangularZoneGeneratorService.resetGeneration();

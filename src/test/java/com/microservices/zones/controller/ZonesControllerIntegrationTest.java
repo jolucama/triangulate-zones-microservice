@@ -5,6 +5,7 @@
  */
 package com.microservices.zones.controller;
 
+import com.microservices.zones.service.impl.TriangularZoneGeneratorServiceImpl;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,26 +37,56 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ZonesControllerIntegrationTest {
 
     //Fields
-    private static final String BASE_URL = "/v1/zones";
+    private static final String BASE_URL = "/v1";
 
     @Autowired
     private TestRestTemplate restTemplate;
-
-    @Test
-    public void testZones() throws Exception {
-
+    
+    private HttpEntity<?> request;
+     
+    @Before
+    public void setUp() {
         //Set the headers
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(MediaType.APPLICATION_JSON);
 
         //Create the http request
-        HttpEntity<?> request = new HttpEntity<>(requestHeaders);
+        request = new HttpEntity<>(requestHeaders);
+    }
+    
+    @After
+    public void tearDown() {
+        restTemplate = null;
+        request = null;
+    }
+    
+    @Test
+    public void testZones() throws Exception {
 
         //Invoke the API service
         ResponseEntity<List> response = restTemplate
-                .exchange(BASE_URL, HttpMethod.GET, request, List.class);
+                .exchange(BASE_URL + "/zones", HttpMethod.GET, request, List.class);
 
         //Verify
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+    
+    @Test
+    public void testGenerateRandomZones() throws Exception {
+        
+        //Invoke the API service
+        ResponseEntity<List> response = restTemplate
+                .exchange(BASE_URL + "/zones/random/2", HttpMethod.GET, request, List.class);
+        
+        //Invoke the API service
+        ResponseEntity<List> response2 = restTemplate
+                .exchange(BASE_URL + "/zones/random/2", HttpMethod.GET, request, List.class);
+
+        //Verify
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assert.assertEquals(HttpStatus.OK, response2.getStatusCode());
+        
+        Assert.assertEquals(response.getBody(), response2.getBody());
+        
     }
 }
